@@ -1,0 +1,43 @@
+:root {
+  --text: #374151;
+  --text-h: #111827;
+  --bg: #f5f6fa;
+  --bg-card: #ffffff;
+  --border: #e5e7eb;
+  --accent: #0f766e;
+  --accent-hover: #0d5f58;
+  --sidebar-bg: #111827;
+  --sidebar-text: #d1d5db;
+
+  font: 15px/1.5 system-ui, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1, h2, h3 {
+  color: var(--text-h);
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+input, select, textarea {
+  font: inherit;
+}
