@@ -176,6 +176,15 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
 }
 
+# Optional: forwards login events for an explicit allowlist of accounts to an
+# external SOC Dashboard demo project. Accounts NOT on the list are never sent
+# anywhere — see accounts/soc_webhook.py.
+SOC_WEBHOOK_URL = os.getenv('SOC_WEBHOOK_URL', '')
+SOC_WEBHOOK_SECRET = os.getenv('SOC_WEBHOOK_SECRET', '')
+SOC_WEBHOOK_MONITORED_USERNAMES = {
+    u.strip() for u in os.getenv('SOC_WEBHOOK_MONITORED_USERNAMES', '').split(',') if u.strip()
+}
+
 
 # CORS
 

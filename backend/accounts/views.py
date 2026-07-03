@@ -7,11 +7,22 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from .models import User
 from .permissions import IsAdmin
 from .serializers import CreateStaffSerializer, UserSerializer
+from .soc_webhook import send_login_event
 
 
 class ThrottledTokenObtainPairView(TokenObtainPairView):
     throttle_classes = [ScopedRateThrottle]
     throttle_scope = 'auth'
+
+    def post(self, request, *args, **kwargs):
+        username = request.data.get('username', '')
+        try:
+            response = super().post(request, *args, **kwargs)
+        except Exception:
+            send_login_event(request, username, success=False)
+            raise
+        send_login_event(request, username, success=(response.status_code == 200))
+        return response
 
 
 class MeView(APIView):
